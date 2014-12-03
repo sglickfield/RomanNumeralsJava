@@ -15,7 +15,7 @@ class SymbolFactory
     
     private static boolean isNumber(String str)
     {
-        return (str.matches("\\d+") && Integer.parseInt(str) < 4000);
+        return (str.matches("^[1-9]+\\d*") && Integer.parseInt(str) < 4000);
     }
 
     private static boolean isRoman(String str)

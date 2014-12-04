@@ -1,3 +1,8 @@
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.Iterator;
+import java.util.Collections;
+
 public class Number implements Symbol
 {
    private int num;

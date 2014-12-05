@@ -1,7 +1,7 @@
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.Iterator;
-import java.util.Collections;
+import java.util.Set; 
+import java.util.TreeMap; 
+import java.util.Iterator; 
+import java.util.Collections; 
 
 public class Number implements Symbol
 {
@@ -23,8 +23,9 @@ public class Number implements Symbol
        romanLookup.put(1000,'M');
    }
 
-   public void convert()
+   public String convert()
    {  
+       String ret  = "";
        Set set     = romanLookup.keySet();
        Iterator it = set.iterator();
        while (it.hasNext())
@@ -35,7 +36,7 @@ public class Number implements Symbol
               int divNum = (Integer) num / currLookupNum;
               for (int j = 0; j < divNum; j++)
               {
-                  System.out.print(romanLookup.get(currLookupNum));
+                  ret += romanLookup.get(currLookupNum);
               }
               num -= (divNum * currLookupNum);
            }
@@ -43,13 +44,13 @@ public class Number implements Symbol
            int exceptionUnit = getExceptionUnit(currLookupNum);
            if (checkForException(currLookupNum, exceptionUnit))
            {
-               System.out.print(romanLookup.get(exceptionUnit));
-               System.out.print(romanLookup.get(currLookupNum));
+               ret += romanLookup.get(exceptionUnit);
+               ret += romanLookup.get(currLookupNum);
                
                num -= (currLookupNum - exceptionUnit);
            }
        } 
-       System.out.println();
+       return ret;
     }
 
     public boolean checkForException(int in, int exceptionUnit)

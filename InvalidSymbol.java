@@ -1,3 +1,5 @@
+import java.lang.UnsupportedOperationException;
+
 class InvalidSymbol implements Symbol
 {
     String input;
@@ -6,9 +8,9 @@ class InvalidSymbol implements Symbol
         input = str;
     }
 
-    public void convert()
+    public String convert()
     {
-        System.out.println("Invalid input: " + input  + ".  Please try again.");
+        return "Invalid input: " + input  + ".  Please try again.";
     }
    
     public boolean checkForException(int i, int j) throws UnsupportedOperationException

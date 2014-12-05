@@ -2,121 +2,116 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.instanceOf;
  
-public class NumberTest 
+public class RomanTest 
 {
-    @Test public final void CheckNumberConstructorReturnsNumber()
+    @Test public final void GetRomanObj()
     {
-        Number n = new Number(1);
-        org.junit.Assert.assertTrue(n instanceof Number);
+        Roman r = new Roman("X");
+        org.junit.Assert.assertTrue(r instanceof Roman);
     }
-    @Test public final void CheckNumberConverts1ToI()
+    @Test public final void CheckConvertIToInt()
     {
-        Number n = new Number(1);
-        org.junit.Assert.assertEquals(n.convert(), "I");
+        Roman r = new Roman("I");
+        org.junit.Assert.assertEquals(r.convert(), "1");
     }
-    @Test public final void CheckNumberConverts5ToV()
+    @Test public final void CheckConvertVToInt()
     {
-        Number n = new Number(5);
-        org.junit.Assert.assertEquals(n.convert(), "V");
+        Roman r = new Roman("V");
+        org.junit.Assert.assertEquals(r.convert(), "5");
     }
-    @Test public final void CheckNumberConverts10ToX()
+    @Test public final void CheckConvertXToInt()
     {
-        Number n = new Number(10);
-        org.junit.Assert.assertEquals(n.convert(), "X");
+        Roman r = new Roman("X");
+        org.junit.Assert.assertEquals(r.convert(), "10");
     }
-    @Test public final void CheckNumberConverts50ToL()
+    @Test public final void CheckConvertLToInt()
     {
-        Number n = new Number(50);
-        org.junit.Assert.assertEquals(n.convert(), "L");
+        Roman r = new Roman("L");
+        org.junit.Assert.assertEquals(r.convert(), "50");
     }
-    @Test public final void CheckNumberConverts100ToC()
+    @Test public final void CheckConvertCToInt()
     {
-        Number n = new Number(100);
-        org.junit.Assert.assertEquals(n.convert(), "C");
+        Roman r = new Roman("C");
+        org.junit.Assert.assertEquals(r.convert(), "100");
     }
-    @Test public final void CheckNumberConverts500ToD()
+    @Test public final void CheckConvertMToInt()
     {
-        Number n = new Number(500);
-        org.junit.Assert.assertEquals(n.convert(), "D");
+        Roman r = new Roman("M");
+        org.junit.Assert.assertEquals(r.convert(), "1000");
     }
-    @Test public final void CheckNumberConverts1000ToM()
+    @Test public final void CheckConvertIIToInt()
     {
-        Number n = new Number(1000);
-        org.junit.Assert.assertEquals(n.convert(), "M");
+        Roman r = new Roman("II");
+        org.junit.Assert.assertEquals(r.convert(), "2");
     }
-    @Test public final void CheckSymbolFactoryReturnsNumberFor1()
+    @Test public final void CheckConvertIXToInt()
     {
-        Symbol s = SymbolFactory.getSymbol("1");
-        org.junit.Assert.assertTrue(s instanceof Number);
+        Roman r = new Roman("IX");
+        org.junit.Assert.assertEquals(r.convert(), "9");
     }
-    @Test public final void Check0IsInvalidSymbol()
+    @Test public final void CheckConvertIVToInt()
     {
-        Symbol s = SymbolFactory.getSymbol("0");
-        org.junit.Assert.assertTrue(s instanceof InvalidSymbol);
+        Roman r = new Roman("IV");
+        org.junit.Assert.assertEquals(r.convert(), "4");
     }
-    @Test public final void Check4000IsInvalidSymbol()
+    @Test public final void CheckIVForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("4000");
-        org.junit.Assert.assertTrue(s instanceof InvalidSymbol);
+        Roman r = new Roman("IV");
+        org.junit.Assert.assertTrue(r.checkForException(0, 1));
     }
-    @Test public final void CheckConvert4toIV()
+    @Test public final void CheckIXForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("4");
-        org.junit.Assert.assertEquals(s.convert(), "IV");
+        Roman r = new Roman("IX");
+        org.junit.Assert.assertTrue(r.checkForException(0, 1));
     }
-    @Test public final void Check4ForExceptionCheck()
+    @Test public final void CheckXLForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("4");
-        org.junit.Assert.assertTrue(s.checkForException(5, 1));
+        Roman r = new Roman("XL");
+        org.junit.Assert.assertTrue(r.checkForException(0, 1));
     }
-    @Test public final void Check9ForExceptionCheck()
+    @Test public final void CheckXCForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("9");
-        org.junit.Assert.assertTrue(s.checkForException(10, 1));
+        Roman r = new Roman("XC");
+        org.junit.Assert.assertTrue(r.checkForException(0, 1));
     }
-    @Test public final void CheckConvert9toIX()
+    @Test public final void CheckCDForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("9");
-        org.junit.Assert.assertEquals(s.convert(), "IX");
+        Roman r = new Roman("CD");
+        org.junit.Assert.assertTrue(r.checkForException(0, 1));
     }
-    @Test public final void Check40ForExceptionCheck()
+    @Test public final void CheckMIXForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("40");
-        org.junit.Assert.assertTrue(s.checkForException(50, 10));
+        Roman r = new Roman("MIX");
+        org.junit.Assert.assertTrue(r.checkForException(1, 2));
     }
-    @Test public final void CheckConvert40ToXL()
+    @Test public final void CheckCMForExceptionCheck()
     {
-        Symbol s = SymbolFactory.getSymbol("40");
-        org.junit.Assert.assertEquals(s.convert(), "XL");
+        Roman r = new Roman("CM");
+        org.junit.Assert.assertTrue(r.checkForException(0, 1));
     }
-    @Test public final void Check90ForExceptionCheck()
+    @Test public final void CheckIIForExceptionCheckFails()
     {
-        Symbol s = SymbolFactory.getSymbol("90");
-        org.junit.Assert.assertTrue(s.checkForException(100, 10));
+        Roman r = new Roman("II");
+        org.junit.Assert.assertFalse(r.checkForException(0, 1));
     }
-    @Test public final void CheckConvert90ToCD()
+    @Test public final void CheckXXForExceptionCheckFails()
     {
-        Symbol s = SymbolFactory.getSymbol("90");
-        org.junit.Assert.assertEquals(s.convert(), "XC");
+        Roman r = new Roman("XX");
+        org.junit.Assert.assertFalse(r.checkForException(0, 1));
     }
-    @Test public final void Check400ForExceptionCheck()
+    @Test public final void CheckMMMForExceptionCheckFails()
     {
-        Symbol s = SymbolFactory.getSymbol("400");
-        org.junit.Assert.assertTrue(s.checkForException(500, 100));
+        Roman r = new Roman("MMM");
+        org.junit.Assert.assertFalse(r.checkForException(1, 2));
     }
-    @Test public final void CheckConvert400ToCD()
+    @Test public final void CheckCMXCIXEquals999()
     {
-        Symbol s = SymbolFactory.getSymbol("400");
-        org.junit.Assert.assertEquals(s.convert(), "CD");
+        Symbol s = SymbolFactory.getSymbol("CMXCIX");
+        org.junit.Assert.assertEquals(s.convert(), "999");
     }
-    @Test public final void Check900ForExceptionCheck()
+    @Test public final void CheckCDIIIEquals403()
     {
-        Symbol s = SymbolFactory.getSymbol("900");
-        org.junit.Assert.assertTrue(s.checkForException(1000, 100));
-    }
-    @Test public final void CheckConvert900ToCD()
-    {
-        Symbol s = SymbolFactory.getSymbol("900");
-        org.junit.Assert.assertEquals(s.convert(), "CM");
+        Symbol s = SymbolFactory.getSymbol("CDIII");
+        org.junit.Assert.assertEquals(s.convert(), "403");
     }
 }

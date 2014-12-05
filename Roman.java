@@ -21,7 +21,7 @@ public class Roman implements Symbol
        romanLookup.put('M', 1000);
    }
 
-   public void convert()
+   public String convert()
    {  
        int num = 0;
        for (int i = 0; i < roman.length(); i++)
@@ -37,7 +37,7 @@ public class Roman implements Symbol
               num += romanLookup.get(roman.charAt(i));
            }
        }
-       System.out.println(num);
+       return num + "";
     }
 
     public boolean checkForException(int off1, int off2)

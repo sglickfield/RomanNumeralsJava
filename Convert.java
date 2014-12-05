@@ -17,7 +17,7 @@ public class Convert
             while (input != null)
             {
                 symbol = SymbolFactory.getSymbol(input);
-                symbol.convert();
+                System.out.println(symbol.convert());
                 input = br.readLine();
             }
         }  
